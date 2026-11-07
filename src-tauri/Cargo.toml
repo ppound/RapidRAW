@@ -31,7 +31,7 @@ pollster = "1.0"
 bytemuck = { version = "1.25", features = ["derive"] }
 anyhow = "1.0.104"
 kamadak-exif = "0.6.1"
-rawler = { git = "https://github.com/CyberTimon/RapidRAW-DngLab.git" }
+rawler = { git = "https://github.com/ppound/RapidRAW-DngLab.git", branch = "xtrans-ri" } # DEMO: X-Trans demosaic branch until it merges into CyberTimon/RapidRAW-DngLab
 tokio = { version = "1", features = ["full"] }
 uuid = { version = "1.25", features = ["v4", "serde"] }
 walkdir = "2.5.0"
