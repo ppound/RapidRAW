@@ -347,7 +347,11 @@ fn develop_internal(
         *level = u32::MAX;
     }
 
+    let denominator = (original_white_level - original_black_level).max(1.0);
+    let rescale_factor = (u32::MAX as f32 - original_black_level) / denominator;
+
     let mut developer = RawDevelop::default();
+    developer.demosaic_scale = rescale_factor;
     developer
         .steps
         .retain(|&step| step != ProcessingStep::SRgb && step != ProcessingStep::Calibrate);
@@ -388,9 +392,6 @@ fn develop_internal(
         check_cancel()?;
         developed_intermediate = camera_to_srgb.apply(developed_intermediate);
     }
-
-    let denominator = (original_white_level - original_black_level).max(1.0);
-    let rescale_factor = (u32::MAX as f32 - original_black_level) / denominator;
 
     let safe_highlight_compression = 1000.0;
 
